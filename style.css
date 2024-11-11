@@ -9,6 +9,7 @@ html{
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 :root{
 --bodyColor:#302e2e; 
@@ -36,25 +37,25 @@ a{
 
 .container-fluid{
 width: 100%;
-background-color:var(--headerColor);
-color:var(--colorText);
-
+height: 100vh;
 }
 .header{
   z-index: 1000;
+  box-shadow: 0px 5px 5px #5a5756;
+  background-color:var(--headerColor);
+color:var(--colorText);
+margin-bottom: 20px;;
 }
 
 .lHeader{
   padding: 10px;
   font-size: 2rem;
- 
 }
 .rHeader{
   float: right;
   padding: 10px;
   font-size: 2rem;
   cursor: pointer;
- 
 }
 .header-r:hover{
 color: burlywood;
@@ -67,4 +68,113 @@ color: burlywood;
   float: right;
   padding-top: 12px;
   font-size: 2rem;
+}
+
+.search{
+  position: relative;
+  width: 55px;
+  height: 50px;
+  background-color: var(--colorText);
+
+  transition: 0.5s;
+ overflow: hidden;
+}
+.search .icon{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55px;
+  height: 55px;
+  background-color: var(--colorText);
+  border-radius:60px ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+.search .icon::before{
+  content: " ";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #287dfc;
+  border-radius: 50%;
+  transform: translate(-4px-4px ) ;
+}
+.search .icon::after{
+  content: " ";
+  position: absolute;
+  width: 3px;
+  height: 12px;
+  background: #287dfc;
+  transform: translate(6px,6px) rotate(315deg);
+  border-radius: 50%;
+}
+.search.active{
+width: 100%;
+}
+
+.search .input{ 
+  position: relative;
+   width: 93%;
+   height: 55px;
+   left: 55px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ 
+}
+.search .input input{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  font-size: 18px;
+padding: 15px 10px;
+}
+
+.clear{
+  position: absolute;
+  top:38%;
+  transform: translate(-50%);
+  width: 20px;
+  height: 20px;
+  right: 25px;
+   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.clear::before{
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 15px;
+  background: #999;
+  transform: rotate(45deg);
+}
+.clear::after{
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 15px;
+  background: #999;
+  transform: rotate(315deg);
+}
+
+
+
+
+.dropdown {
+  padding: 2px;
+}
+
+.regionClss{
+  word-wrap: normal;
+  width: 50%;
+  font-size: 2rem;
+  padding: 5px;
+  float: right;
 }
