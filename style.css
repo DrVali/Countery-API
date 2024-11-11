@@ -1,0 +1,70 @@
+﻿@font-face{
+	font-family: "sahel";
+	src: url(fonts/Sahel-FD-WOL.eot) format("eot"),url(fonts/Sahel-FD-WOL.ttf) format("truetype"),url(fonts/Sahel-FD-WOL.woff) format("woff");
+}
+html{
+  font-size: 62.5%;
+}
+*{
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+:root{
+--bodyColor:#302e2e; 
+--headerColor:#3b3b3b;
+--colorText: rgb(250, 250, 250);
+--test-color:hsl(120, 60%, 47%);
+
+}
+a{
+  color:var(--colorText);
+}
+body{
+	padding: 0;
+	font-family: "sahel";
+	font-size: 1rem;
+  background-color:var(--bodyColor);
+}
+li{
+	list-style: none;
+    display: inline-block;
+}
+a{
+  text-decoration: none;
+}
+
+.container-fluid{
+width: 100%;
+background-color:var(--headerColor);
+color:var(--colorText);
+
+}
+.header{
+  z-index: 1000;
+}
+
+.lHeader{
+  padding: 10px;
+  font-size: 2rem;
+ 
+}
+.rHeader{
+  float: right;
+  padding: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+ 
+}
+.header-r:hover{
+color: burlywood;
+}
+.dark{
+  background-color:var(--colorText);
+  color: var(--bodyColor);
+}
+#darkI{
+  float: right;
+  padding-top: 12px;
+  font-size: 2rem;
+}
