@@ -206,3 +206,8 @@ padding: 15px 10px;
   font-size: 2rem;
   color: var(--colorText);
 }
+
+
+.box-content{
+  padding: 5px;
+}
