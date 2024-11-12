@@ -1,6 +1,5 @@
 
 
-
     //create div class="container-fluid"
     const containerEl =document.createElement('div');
     containerEl.classList.add("container-fluid");
@@ -184,6 +183,18 @@ downHeader.append(cols5);
     
 
 
+
+
+
+
+
+
+
+//show content after select
+
+ function showcountery(e){
+
+
     const mainContent=document.createElement("div");
     mainContent.classList.add("main-content");
     containerEl.append(mainContent);
@@ -239,36 +250,32 @@ downHeader.append(cols5);
 
      //reuest on xmlHttp
 
-        function showcountery(e){
+       
           let request;
           if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
           else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
           request.open('GET', 'data.json') ;
           
           request.send();
-      
-       request.onreadystatechange=function (){
+          
+          
+       request.addEventListener("load", function (){
           if (request.readyState == 4 && request.status == 200) {
             let result= JSON.parse(request.responseText);
-                // console.log(request.responseText);
+                console.log(e);
                 
                 result.map((res)=>{
-                  if(res.region === e)
+                  if(res.region === e.id)
                   boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
                 })
               }
-          }
+          })
         }
 
+        //select in option nd drop down
 
-        //select in option and drop down
-
-       const AsiaEl=document.getElementById("Asia");
-       AsiaEl.addEventListener("click",showcountery(AsiaEl.id));
-       
-
-  
-
-       const EuropeEl=document.getElementById("Africa");
-       EuropeEl.addEventListener("click",showcountery(EuropeEl.id));
-       
+        const AsiaEl=document.getElementById("Asia");
+        option4.addEventListener("click",showcountery(option4));
+ 
+        //const AfricaE1=document.getElementById("Africa");
+        //AfricaE1.addEventListener("click",showcountery(AfricaE1.id));
