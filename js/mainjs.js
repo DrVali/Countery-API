@@ -139,7 +139,7 @@ downHeader.append(cols5);
     const option3=document.createElement("option");
     option3.value="America";
     option3.innerHTML="America";
-    option3.id="America";
+    option3.id="Americas";
     selectbox.append(option3);
 
     
@@ -185,10 +185,11 @@ downHeader.append(cols5);
 
 
 
-
-
-
-
+    option2.addEventListener("click",showcountery(option2));
+    option3.addEventListener("click",showcountery(option3));      
+    option4.addEventListener("click",showcountery(option4));
+    option5.addEventListener("click",showcountery(option5));
+    option6.addEventListener("click",showcountery(option6));
 
 //show content after select
 
@@ -271,11 +272,12 @@ downHeader.append(cols5);
               }
           })
         }
+///////////////////////////////////////////////////////////////////////////////////////////////
 
         //select in option nd drop down
 
-        const AsiaEl=document.getElementById("Asia");
-        option4.addEventListener("click",showcountery(option4));
+       
+       
  
         //const AfricaE1=document.getElementById("Africa");
         //AfricaE1.addEventListener("click",showcountery(AfricaE1.id));
