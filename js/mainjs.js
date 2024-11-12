@@ -192,14 +192,14 @@ downHeader.append(cols5);
     option6.addEventListener("click",showcountery(option6));
 
 //show content after select
+const mainContent=document.createElement("div");
+    mainContent.classList.add("main-content");
+    containerEl.append(mainContent);
 
  function showcountery(e){
 
 
-    const mainContent=document.createElement("div");
-    mainContent.classList.add("main-content");
-    containerEl.append(mainContent);
-
+    
 
     
 
