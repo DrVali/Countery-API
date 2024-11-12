@@ -197,39 +197,42 @@ downHeader.append(cols5);
         const boxContent=document.createElement("div");
         boxContent.classList.add("box");
         mainContent.append(boxContent);
-    
-    
+     
+        const boxContent2=document.createElement("div");
+        boxContent2.classList.add("box-content");
+        
+         
         const aBox=document.createElement("a");
         aBox.classList.add("countery-pic");
         boxContent.append(aBox);
-
+          
         const imgBox=document.createElement("img");
         imgBox.classList.add("images");
         imgBox.src=`${png}`;
         imgBox.alt="jj";
         aBox.append(imgBox);
-
+        boxContent.append(boxContent2);
         const H2El=document.createElement("h2");
         H2El.classList.add("counter-title");
         H2El.innerHTML=`${namee}`;
-        boxContent.append(H2El);
+        boxContent2.append(H2El);
 
 
         const spanPop=document.createElement("span");
         spanPop.classList.add("pop");
         spanPop.innerHTML=`population:  ${population}`;
-        boxContent.append(spanPop);
+        boxContent2.append(spanPop);
 
 
         const spanRegion=document.createElement("span");
         spanRegion.classList.add("region");
         spanRegion.innerHTML=`region:  ${region}`;
-        boxContent.append(spanRegion);
+        boxContent2.append(spanRegion);
 
         const spancapital=document.createElement("span");
         spancapital.classList.add("capital");
         spancapital.innerHTML=`capital: ${capital}`;
-        boxContent.append(spancapital);      
+        boxContent2.append(spancapital);      
 
     
       }
@@ -245,12 +248,9 @@ downHeader.append(cols5);
  request.onreadystatechange=function (){
     if (request.readyState == 4 && request.status == 200) {
       let result= JSON.parse(request.responseText);
-          // console.log(request.responseText);
           result.map((res)=>{
             boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
           })
         }
     }
 }
-
-  
