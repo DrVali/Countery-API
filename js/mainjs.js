@@ -238,23 +238,21 @@ const mainContent=document.createElement("div");
       boxContent2.append(spancapital);      
     }
     ///////////////////////////////////////////////////////////////////////
-    showcountery = function(){   
+    showcountery = function(e){
+       
        //reuest on xmlHttp
             let request;
             if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
             else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
             request.open('GET', 'data.json') ;
-            
-            request.send();
-            
-            
+            request.send();           
          request.addEventListener("load", function (){
             if (request.readyState == 4 && request.status == 200) {
               let result= JSON.parse(request.responseText);
-           
+              console.log(e.target.value);
                   
                   result.map((res)=>{
-                    if(res.region === e.id)
+                    if(res.region ===e.target.value)
                     boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
                   })
                 }
@@ -262,38 +260,7 @@ const mainContent=document.createElement("div");
           }  
 
 ////////////////////////////////////////////////////////////////////////////////////
-    let OceaniaEl=document.querySelector("#Oceania");
-    
-    OceaniaEl.addEventListener("click",function(){
-      let request;
-      console.log("hjh");
-      if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
-      else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
-      request.open('GET', 'data.json') ;
-      
-      request.send();
-      
-      console.log("lkjlk");
-   request.addEventListener("load", function (){
-      if (request.readyState == 4 && request.status == 200) {
-        let result= JSON.parse(request.responseText);
-     
-            
-            result.map((res)=>{
-              if(res.region === "Oceania")
-              boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
-            })
-          }
-      })
-    });
-
-    let AfricaEl=document.querySelector("#Africa");
-    AfricaEl.addEventListener("click",showcountery);
-    // option3.addEventListener("click",showcountery(option3));      
-    // option4.addEventListener("click",showcountery(option4));
-    // option5.addEventListener("click",showcountery(option5));
-    // option6.addEventListener("click",showcountery(option6));
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////
+   
+    let selectDropDown=document.querySelector("#region");
+    selectDropDown.addEventListener("change",showcountery);
+   
