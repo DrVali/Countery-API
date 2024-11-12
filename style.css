@@ -1,4 +1,4 @@
-﻿@font-face{
+@font-face{
 	font-family: "sahel";
 	src: url(fonts/Sahel-FD-WOL.eot) format("eot"),url(fonts/Sahel-FD-WOL.ttf) format("truetype"),url(fonts/Sahel-FD-WOL.woff) format("woff");
 }
@@ -198,7 +198,7 @@ padding: 15px 10px;
   width:100%;
   aspect-ratio: 4/3;
   height:auto;
-  object-fit: cover;
+  object-fit: fill;
 }
 .main-content .box span,.main-content .box h2{
   display: block;
@@ -206,7 +206,6 @@ padding: 15px 10px;
   font-size: 2rem;
   color: var(--colorText);
 }
-
 
 .box-content{
   padding: 5px;
