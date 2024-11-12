@@ -1,5 +1,5 @@
 
-window.onload =function (){
+
 
     //create div class="container-fluid"
     const containerEl =document.createElement('div');
@@ -147,7 +147,7 @@ downHeader.append(cols5);
     const option4=document.createElement("option");
     option4.value="Asia";
     option4.innerHTML="Asia";
-    option4.id="Europe";
+    option4.id="Asia";
     selectbox.append(option4);
 
 
@@ -191,7 +191,7 @@ downHeader.append(cols5);
 
     
 
-
+  ///create a box for selected option 
 
       function boxMaking(namee,capital,region,population,png){
         const boxContent=document.createElement("div");
@@ -233,24 +233,42 @@ downHeader.append(cols5);
         spancapital.classList.add("capital");
         spancapital.innerHTML=`capital: ${capital}`;
         boxContent2.append(spancapital);      
-
-    
       }
+
+
+
+     //reuest on xmlHttp
+
+        function showcountery(e){
+          let request;
+          if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
+          else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
+          request.open('GET', 'data.json') ;
+          
+          request.send();
       
-
-    let request;
-    if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
-    else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
-    request.open('GET', 'data.json') ;
-    
-    request.send();
-
- request.onreadystatechange=function (){
-    if (request.readyState == 4 && request.status == 200) {
-      let result= JSON.parse(request.responseText);
-          result.map((res)=>{
-            boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
-          })
+       request.onreadystatechange=function (){
+          if (request.readyState == 4 && request.status == 200) {
+            let result= JSON.parse(request.responseText);
+                // console.log(request.responseText);
+                
+                result.map((res)=>{
+                  if(res.region === e)
+                  boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+                })
+              }
+          }
         }
-    }
-}
+
+
+        //select in option and drop down
+
+       const AsiaEl=document.getElementById("Asia");
+       AsiaEl.addEventListener("click",showcountery(AsiaEl.id));
+       
+
+  
+
+       const EuropeEl=document.getElementById("Africa");
+       EuropeEl.addEventListener("click",showcountery(EuropeEl.id));
+       
