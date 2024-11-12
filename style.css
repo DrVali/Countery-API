@@ -178,3 +178,31 @@ padding: 15px 10px;
   padding: 5px;
   float: right;
 }
+
+.main-content{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+
+}
+.main-content .box{
+  width: 24%;
+  height: auto;
+  background: var(--headerColor);
+  margin-bottom: 15px;
+}
+
+.main-content .box a img{
+  width:100%;
+  aspect-ratio: 4/3;
+  height:auto;
+  object-fit: cover;
+}
+.main-content .box span,.main-content .box h2{
+  display: block;
+  padding: 5px;
+  font-size: 2rem;
+  color: var(--colorText);
+}

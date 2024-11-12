@@ -184,6 +184,61 @@ downHeader.append(cols5);
     
 
 
+    const mainContent=document.createElement("div");
+    mainContent.classList.add("main-content");
+    containerEl.append(mainContent);
+
+
+    
+
+
+
+      function boxMaking(namee){
+        const boxContent=document.createElement("div");
+        boxContent.classList.add("box");
+        mainContent.append(boxContent);
+    
+    
+        const aBox=document.createElement("a");
+        aBox.classList.add("countery-pic");
+        boxContent.append(aBox);
+
+        const imgBox=document.createElement("img");
+        imgBox.classList.add("images");
+        imgBox.src="./images/products/1.jpg";
+        imgBox.alt="jj";
+        aBox.append(imgBox);
+
+        const H2El=document.createElement("h2");
+        H2El.classList.add("counter-title");
+        H2El.innerHTML=`${namee}`;
+        boxContent.append(H2El);
+
+
+        const spanPop=document.createElement("span");
+        spanPop.classList.add("pop");
+        spanPop.innerHTML="population:90,000,000";
+        boxContent.append(spanPop);
+
+
+        const spanRegion=document.createElement("span");
+        spanRegion.classList.add("region");
+        spanRegion.innerHTML="region:Asia";
+        boxContent.append(spanRegion);
+
+        const spancapital=document.createElement("span");
+        spancapital.classList.add("capital");
+        spancapital.innerHTML="capital:tehran";
+        boxContent.append(spancapital);
+
+
+
+        
+
+    
+      }
+      boxMaking();
+
     let request;
     if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
     else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
@@ -193,10 +248,19 @@ downHeader.append(cols5);
 
  request.onreadystatechange=function (){
     if (request.readyState == 4 && request.status == 200) {
-        console.log("ghghj");
-        let result= request.responseText;
+      let result= JSON.parse(request.responseText);
+          // console.log(request.responseText);
+          console.log("Resualt ==>",result);
+          result.map((res)=>{
+            console.log("RESS==>",res.name);
+            boxMaking(res.name);
+          })
+        // for( let o in result){
+        //  console.log(o.name);
+        // boxMaking(o.name);
+        // }
+        }
     }
 }
 
-    }
-    
+  
