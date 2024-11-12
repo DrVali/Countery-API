@@ -193,7 +193,7 @@ downHeader.append(cols5);
 
 
 
-      function boxMaking(namee){
+      function boxMaking(namee,capital,region,population,png){
         const boxContent=document.createElement("div");
         boxContent.classList.add("box");
         mainContent.append(boxContent);
@@ -205,7 +205,7 @@ downHeader.append(cols5);
 
         const imgBox=document.createElement("img");
         imgBox.classList.add("images");
-        imgBox.src="./images/products/1.jpg";
+        imgBox.src=`${png}`;
         imgBox.alt="jj";
         aBox.append(imgBox);
 
@@ -217,27 +217,23 @@ downHeader.append(cols5);
 
         const spanPop=document.createElement("span");
         spanPop.classList.add("pop");
-        spanPop.innerHTML="population:90,000,000";
+        spanPop.innerHTML=`population:  ${population}`;
         boxContent.append(spanPop);
 
 
         const spanRegion=document.createElement("span");
         spanRegion.classList.add("region");
-        spanRegion.innerHTML="region:Asia";
+        spanRegion.innerHTML=`region:  ${region}`;
         boxContent.append(spanRegion);
 
         const spancapital=document.createElement("span");
         spancapital.classList.add("capital");
-        spancapital.innerHTML="capital:tehran";
-        boxContent.append(spancapital);
-
-
-
-        
+        spancapital.innerHTML=`capital: ${capital}`;
+        boxContent.append(spancapital);      
 
     
       }
-      boxMaking();
+      
 
     let request;
     if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
@@ -250,10 +246,9 @@ downHeader.append(cols5);
     if (request.readyState == 4 && request.status == 200) {
       let result= JSON.parse(request.responseText);
           // console.log(request.responseText);
-          console.log("Resualt ==>",result);
           result.map((res)=>{
             console.log("RESS==>",res.name);
-            boxMaking(res.name);
+            boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
           })
         // for( let o in result){
         //  console.log(o.name);
