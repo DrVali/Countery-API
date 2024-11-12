@@ -180,104 +180,120 @@ downHeader.append(cols5);
          search.classList.toggle('active');
     }
     );
-    
+   
+
+
+   
 
 
 
 
-    option2.addEventListener("click",showcountery(option2));
-    option3.addEventListener("click",showcountery(option3));      
-    option4.addEventListener("click",showcountery(option4));
-    option5.addEventListener("click",showcountery(option5));
-    option6.addEventListener("click",showcountery(option6));
-
+     
+          
 //show content after select
 const mainContent=document.createElement("div");
     mainContent.classList.add("main-content");
     containerEl.append(mainContent);
 
- function showcountery(e){
-
-
-    
-
-    
-
   ///create a box for selected option 
-
-      function boxMaking(namee,capital,region,population,png){
-        const boxContent=document.createElement("div");
-        boxContent.classList.add("box");
-        mainContent.append(boxContent);
-     
-        const boxContent2=document.createElement("div");
-        boxContent2.classList.add("box-content");
+    function boxMaking(namee,capital,region,population,png){
+      const boxContent=document.createElement("div");
+      boxContent.classList.add("box");
+      mainContent.append(boxContent);
+   
+      const boxContent2=document.createElement("div");
+      boxContent2.classList.add("box-content");
+      
+       
+      const aBox=document.createElement("a");
+      aBox.classList.add("countery-pic");
+      boxContent.append(aBox);
         
-         
-        const aBox=document.createElement("a");
-        aBox.classList.add("countery-pic");
-        boxContent.append(aBox);
-          
-        const imgBox=document.createElement("img");
-        imgBox.classList.add("images");
-        imgBox.src=`${png}`;
-        imgBox.alt="jj";
-        aBox.append(imgBox);
-        boxContent.append(boxContent2);
-        const H2El=document.createElement("h2");
-        H2El.classList.add("counter-title");
-        H2El.innerHTML=`${namee}`;
-        boxContent2.append(H2El);
+      const imgBox=document.createElement("img");
+      imgBox.classList.add("images");
+      imgBox.src=`${png}`;
+      imgBox.alt="jj";
+      aBox.append(imgBox);
+      boxContent.append(boxContent2);
+      const H2El=document.createElement("h2");
+      H2El.classList.add("counter-title");
+      H2El.innerHTML=`${namee}`;
+      boxContent2.append(H2El);
 
 
-        const spanPop=document.createElement("span");
-        spanPop.classList.add("pop");
-        spanPop.innerHTML=`population:  ${population}`;
-        boxContent2.append(spanPop);
+      const spanPop=document.createElement("span");
+      spanPop.classList.add("pop");
+      spanPop.innerHTML=`population:  ${population}`;
+      boxContent2.append(spanPop);
 
 
-        const spanRegion=document.createElement("span");
-        spanRegion.classList.add("region");
-        spanRegion.innerHTML=`region:  ${region}`;
-        boxContent2.append(spanRegion);
+      const spanRegion=document.createElement("span");
+      spanRegion.classList.add("region");
+      spanRegion.innerHTML=`region:  ${region}`;
+      boxContent2.append(spanRegion);
 
-        const spancapital=document.createElement("span");
-        spancapital.classList.add("capital");
-        spancapital.innerHTML=`capital: ${capital}`;
-        boxContent2.append(spancapital);      
-      }
+      const spancapital=document.createElement("span");
+      spancapital.classList.add("capital");
+      spancapital.innerHTML=`capital: ${capital}`;
+      boxContent2.append(spancapital);      
+    }
+    ///////////////////////////////////////////////////////////////////////
+    showcountery = function(){   
+       //reuest on xmlHttp
+            let request;
+            if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
+            else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
+            request.open('GET', 'data.json') ;
+            
+            request.send();
+            
+            
+         request.addEventListener("load", function (){
+            if (request.readyState == 4 && request.status == 200) {
+              let result= JSON.parse(request.responseText);
+           
+                  
+                  result.map((res)=>{
+                    if(res.region === e.id)
+                    boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+                  })
+                }
+            })
+          }  
+
+////////////////////////////////////////////////////////////////////////////////////
+    let OceaniaEl=document.querySelector("#Oceania");
+    
+    OceaniaEl.addEventListener("click",function(){
+      let request;
+      console.log("hjh");
+      if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
+      else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
+      request.open('GET', 'data.json') ;
+      
+      request.send();
+      
+      console.log("lkjlk");
+   request.addEventListener("load", function (){
+      if (request.readyState == 4 && request.status == 200) {
+        let result= JSON.parse(request.responseText);
+     
+            
+            result.map((res)=>{
+              if(res.region === "Oceania")
+              boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+            })
+          }
+      })
+    });
+
+    let AfricaEl=document.querySelector("#Africa");
+    AfricaEl.addEventListener("click",showcountery);
+    // option3.addEventListener("click",showcountery(option3));      
+    // option4.addEventListener("click",showcountery(option4));
+    // option5.addEventListener("click",showcountery(option5));
+    // option6.addEventListener("click",showcountery(option6));
 
 
 
-     //reuest on xmlHttp
-
-       
-          let request;
-          if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
-          else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
-          request.open('GET', 'data.json') ;
-          
-          request.send();
-          
-          
-       request.addEventListener("load", function (){
-          if (request.readyState == 4 && request.status == 200) {
-            let result= JSON.parse(request.responseText);
-                console.log(e);
-                
-                result.map((res)=>{
-                  if(res.region === e.id)
-                  boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
-                })
-              }
-          })
-        }
 ///////////////////////////////////////////////////////////////////////////////////////////////
-
-        //select in option nd drop down
-
-       
-       
- 
-        //const AfricaE1=document.getElementById("Africa");
-        //AfricaE1.addEventListener("click",showcountery(AfricaE1.id));
