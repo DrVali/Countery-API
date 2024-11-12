@@ -247,13 +247,8 @@ downHeader.append(cols5);
       let result= JSON.parse(request.responseText);
           // console.log(request.responseText);
           result.map((res)=>{
-            console.log("RESS==>",res.name);
             boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
           })
-        // for( let o in result){
-        //  console.log(o.name);
-        // boxMaking(o.name);
-        // }
         }
     }
 }
