@@ -137,8 +137,8 @@ downHeader.append(cols5);
 
    
     const option3=document.createElement("option");
-    option3.value="America";
-    option3.innerHTML="America";
+    option3.value="Americas";
+    option3.innerHTML="Americas";
     option3.id="Americas";
     selectbox.append(option3);
 
@@ -197,6 +197,10 @@ const mainContent=document.createElement("div");
 
   ///create a box for selected option 
     function boxMaking(namee,capital,region,population,png){
+
+     
+
+
       const boxContent=document.createElement("div");
       boxContent.classList.add("box");
       mainContent.append(boxContent);
@@ -239,7 +243,7 @@ const mainContent=document.createElement("div");
     }
     ///////////////////////////////////////////////////////////////////////
     showcountery = function(e){
-       
+      document.querySelector(".main-content").innerHTML="";
        //reuest on xmlHttp
             let request;
             if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
@@ -260,7 +264,34 @@ const mainContent=document.createElement("div");
           }  
 
 ////////////////////////////////////////////////////////////////////////////////////
-   
-    let selectDropDown=document.querySelector("#region");
+     let selectDropDown=document.querySelector("#region");
     selectDropDown.addEventListener("change",showcountery);
+   
+
+
+    searchCountery = function(e){
+      document.querySelector(".main-content").innerHTML="";
+       //reuest on xmlHttp
+            let request;
+            if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
+            else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
+            request.open('GET', 'data.json') ;
+            request.send();           
+         request.addEventListener("load", function (){
+            if (request.readyState == 4 && request.status == 200) {
+              let result= JSON.parse(request.responseText);
+              const toUpperSearch = e.target.value.toUpperCase();
+                 
+                  result.map((res)=>{
+                    let response12=res.name.toUpperCase();
+                    if( response12.includes(toUpperSearch)){
+                     boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+                     }
+                  })
+                }
+            })
+          }  
+
+    let searchText=document.querySelector("#mySearch");
+    searchText.addEventListener("input",searchCountery);
    
