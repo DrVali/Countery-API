@@ -12,9 +12,10 @@ html{
   box-sizing: border-box;
 }
 :root{
---bodyColor:#302e2e; 
---headerColor:#3b3b3b;
---colorText: rgb(250, 250, 250);
+--bodyColor: hsl(207, 26%, 17%); 
+--headerColor:hsl(209, 23%, 22%);
+--colorText: hsl(0, 0%, 100%);
+--bg-light:hsl(0, 0%, 98%);
 --test-color:hsl(120, 60%, 47%);
 
 }
@@ -63,6 +64,10 @@ color: burlywood;
 .dark{
   background-color:var(--colorText);
   color: var(--bodyColor);
+}
+.light{
+  background-color:var(--bg-light);
+  color: var(--headerColor);
 }
 #darkI{
   float: right;
