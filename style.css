@@ -17,6 +17,7 @@ html{
 --colorText: hsl(0, 0%, 100%);
 --bg-light:hsl(0, 0%, 98%);
 --test-color:hsl(120, 60%, 47%);
+--DarkGray:hsl(0, 0%, 52%);
 
 }
 a{
@@ -24,7 +25,7 @@ a{
 }
 body{
 	padding: 0;
-	font-family: "sahel";
+
 	font-size: 1rem;
   background-color:var(--bodyColor);
 }
@@ -208,7 +209,7 @@ padding: 15px 10px;
 .main-content .box span,.main-content .box h2{
   display: block;
   padding: 5px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--colorText);
 }
 
