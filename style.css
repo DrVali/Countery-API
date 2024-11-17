@@ -254,18 +254,12 @@ width: 100%;
   text-decoration: none;
   cursor: pointer;
 }
-.modal-content span {
+.modal-content span,.modal-content label {
   
   width: auto;
   text-align: center;
   font-size: 1.5rem;
 }
-.modal-content label{
-  font-size: 1.5rem;
-   font-weight: bolder;
-    width: auto; 
-    text-align: center;
-}
-.nameC{
-  font-size: 1.5rem; 
+.modal-content label{ 
+   font-weight: bolder; 
 }
