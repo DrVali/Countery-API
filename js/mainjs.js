@@ -38,9 +38,12 @@
     col4.append(iconDark);
     rowdivRow.append(cols8);
     rowdivRow.append(col4);
-  
+    const modalDisplay=document.getElementById("myModal");
     
-
+document.body.addEventListener("load",function(){
+ 
+  modalDisplay.classList.toggle("noneModal");
+});
            //change moon or sun
     if(document.body.classList.contains("dark")){
         document.getElementById("darkI").classList.add("fa-sun-o");
@@ -340,9 +343,8 @@ const mainContent=document.createElement("div");
  
         
   function openModal(res,index){
-	  event.preventDefault()
- let c=res;
-	  console.log("index==>",c);
+	  event.preventDefault();
+ 
   // console.log("RES ==>",res);
           let modals = document.getElementById("myModal");
           //modals.style.display = "block";
@@ -481,7 +483,7 @@ const mainContent=document.createElement("div");
         let modal = document.getElementById("myModal");
         let x =document.getElementById("myalert");
         // Get the button that opens the modal
-        const btn = document.querySelector("#myModal");
+        const btn = document.querySelector(".modal");
         
         // Get the <span> element that closes the modal
         const spanClose = document.getElementById("close");
@@ -494,20 +496,19 @@ const mainContent=document.createElement("div");
         
         // When the user clicks on <span> (x), close the modal
         spanClose.addEventListener("mouseup",function() {
-          modalEl.style.display = "none";
+         
+          btn.remove();
         });
         
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
           if (event.target == modal) {
-            modalEl.style.display = "none";
+             
+              modalDisplay.classList.toggle("noneModal");
           }
         }
-        //////////////////////////////////////////////       
-      }
-      document.body.addEventListener("click", function() {
-        let modals = document.querySelector(".modal");
+        //////////////////////////////////////////////   
         
-        modals.style.display = "none";
-        }
-      );
+      
+  
+      
