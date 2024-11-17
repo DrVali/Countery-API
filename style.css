@@ -260,6 +260,10 @@ width: 100%;
   text-align: center;
   font-size: 1.5rem;
 }
-.modal-content label{ 
-   font-weight: bolder; 
+.modal-content label,.nameC{
+  font-size: 1.5rem;
+padding: 5px; 
+}
+.nameC{
+  font-weight: bolder;
 }
