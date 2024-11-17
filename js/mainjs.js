@@ -442,9 +442,8 @@ const mainContent=document.createElement("div");
           mCRNLbl1.textContent="Native Name :";
           mCRNLbl1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLbl1);
-          const mCRNLspn1=document.createElement("span");
+          const mCRNLspn1=document.createElement("label");
           mCRNLspn1.textContent=`${res.nativeName}`;
-          mCRNLspn1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLspn1);
         
           rowContentRowmodalEl.append(modalContentRightNativeName);
@@ -455,11 +454,12 @@ const mainContent=document.createElement("div");
           modalCRPopulation.classList.add("col-lg-12");
           modalCRPopulation.classList.add("col-md-12");
           modalCRPopulation.classList.add("col-sm-12");
-          modalCRPopulation.classList.add("nameC");
+          
           const mCRNLblP=document.createElement("label");
           mCRNLblP.textContent="Population :";
+          mCRNLblP.classList.add("nameC");
           modalCRPopulation.append(mCRNLblP);
-          const mCRNLspnP=document.createElement("span");
+          const mCRNLspnP=document.createElement("label");
           mCRNLspnP.textContent=`${res.population}`;
           modalCRPopulation.append(mCRNLspnP);
           
@@ -472,11 +472,12 @@ const mainContent=document.createElement("div");
           modalCRRegion.classList.add("col-lg-12");
           modalCRRegion.classList.add("col-md-12");
           modalCRRegion.classList.add("col-sm-12");
-          modalCRRegion.classList.add("nameC");
+          
           const mCRNLblR=document.createElement("label");
           mCRNLblR.textContent="Region:";
           modalCRRegion.append(mCRNLblR);
-          const mCRNLspnR=document.createElement("span");
+          mCRNLblR.classList.add("nameC");
+          const mCRNLspnR=document.createElement("label");
           mCRNLspnR.textContent=`${res.region}`;
           modalCRRegion.append(mCRNLspnR);
         
@@ -522,10 +523,7 @@ const mainContent=document.createElement("div");
           btn.remove();
         });
         
+        // When the user clicks anywhere outside of the modal, close it
       
+        }
         //////////////////////////////////////////////   
-        
-      
-  
-      }
-      
