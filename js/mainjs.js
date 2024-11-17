@@ -522,13 +522,7 @@ const mainContent=document.createElement("div");
           btn.remove();
         });
         
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-          if (event.target == modal) {
-             
-              modalDisplay.classList.toggle("noneModal");
-          }
-        }
+      
         //////////////////////////////////////////////   
         
       
