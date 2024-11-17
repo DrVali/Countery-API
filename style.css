@@ -69,6 +69,12 @@ color: burlywood;
   padding-top: 12px;
   font-size: 2rem;
 }
+.noneModal{
+  display: none; 
+}
+.noneModal{
+  display: none; 
+}
 
 .search{
   position: relative;
