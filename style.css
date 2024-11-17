@@ -1,7 +1,3 @@
-@font-face{
-	font-family: "sahel";
-	src: url(fonts/Sahel-FD-WOL.eot) format("eot"),url(fonts/Sahel-FD-WOL.ttf) format("truetype"),url(fonts/Sahel-FD-WOL.woff) format("woff");
-}
 html{
   font-size: 62.5%;
 }
@@ -23,7 +19,6 @@ a{
 }
 body{
 	padding: 0;
-	font-family: "sahel";
 	font-size: 1rem;
   background-color:var(--bodyColor);
 }
