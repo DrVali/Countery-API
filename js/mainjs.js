@@ -53,7 +53,9 @@
         document.getElementById("darkI").classList.toggle("fa-sun-o");
         document.getElementById("darkI").classList.toggle("fa-moon-o");
         document.body.classList.toggle("dark");
+        
          } 
+
       btnDarkmode.addEventListener("click",darkmode);
 
 
@@ -276,8 +278,12 @@ const mainContent=document.createElement("div");
 					
                     
 
-                    //else if(res.region ==e.target.value && e.target.value)
-                      //boxMaking(res);
+                    if( e.target.value==="all"){
+                      console.log(e.target.value);
+                      
+                      boxMaking(res);
+
+                    }
                   })
                 }
             })
@@ -336,8 +342,8 @@ const mainContent=document.createElement("div");
         
   function openModal(res,index){
 	  event.preventDefault()
-
-	  console.log("index==>",index);
+ let c=res;
+	  console.log("index==>",c);
   // console.log("RES ==>",res);
           let modals = document.getElementById("myModal");
           //modals.style.display = "block";
@@ -387,6 +393,7 @@ const mainContent=document.createElement("div");
           modalContentRight.classList.add("col-lg-6");
           modalContentRight.classList.add("col-md-6");
           modalContentRight.classList.add("col-sm-6");
+          
           ContentRowmodalEl.append(modalContentRight);
         
         
@@ -395,23 +402,26 @@ const mainContent=document.createElement("div");
           modalContentRight.append(rowContentRowmodalEl);
         
           const modalContentRightName=document.createElement("div");
-          modalContentRightName.classList.add("col-lg-6");
-          modalContentRightName.classList.add("col-md-6");
-          modalContentRightName.classList.add("col-sm-6");
-          modalContentRightName.textContent="Iran";
+          modalContentRightName.classList.add("col-lg-12");
+          modalContentRightName.classList.add("col-md-12");
+          modalContentRightName.classList.add("col-sm-12");
+          modalContentRightName.classList.add("nameC");
+          modalContentRightName.textContent= `${res.name}`;
           rowContentRowmodalEl.append(modalContentRightName);
         
           //native name in modal 
           const modalContentRightNativeName=document.createElement("div");
-          modalContentRightNativeName.classList.add("col-lg-6");
-          modalContentRightNativeName.classList.add("col-md-6");
-          modalContentRightNativeName.classList.add("col-sm-6");
-        
+          modalContentRightNativeName.classList.add("col-lg-12");
+          modalContentRightNativeName.classList.add("col-md-12");
+          modalContentRightNativeName.classList.add("col-sm-12");
+          modalContentRightNativeName.classList.add("nameC");
           const mCRNLbl1=document.createElement("label");
           mCRNLbl1.textContent="Native Name :";
+          mCRNLbl1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLbl1);
           const mCRNLspn1=document.createElement("span");
           mCRNLspn1.textContent="Irani ";
+          mCRNLspn1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLspn1);
         
           rowContentRowmodalEl.append(modalContentRightNativeName);
@@ -419,32 +429,32 @@ const mainContent=document.createElement("div");
         
         //population in modal
           const modalCRPopulation=document.createElement("div");
-          modalCRPopulation.classList.add("col-lg-6");
-          modalCRPopulation.classList.add("col-md-6");
-          modalCRPopulation.classList.add("col-sm-6");
-        
+          modalCRPopulation.classList.add("col-lg-12");
+          modalCRPopulation.classList.add("col-md-12");
+          modalCRPopulation.classList.add("col-sm-12");
+          modalCRPopulation.classList.add("nameC");
           const mCRNLblP=document.createElement("label");
           mCRNLblP.textContent="Population :";
           modalCRPopulation.append(mCRNLblP);
           const mCRNLspnP=document.createElement("span");
-          mCRNLspnP.textContent="456464564646";
+          mCRNLspnP.textContent=`${res.population}`;
           modalCRPopulation.append(mCRNLspnP);
-        
+          
           rowContentRowmodalEl.append(modalCRPopulation);
         
         
         
           //Region in modal
           const modalCRRegion=document.createElement("div");
-          modalCRRegion.classList.add("col-lg-6");
-          modalCRRegion.classList.add("col-md-6");
-          modalCRRegion.classList.add("col-sm-6");
-        
+          modalCRRegion.classList.add("col-lg-12");
+          modalCRRegion.classList.add("col-md-12");
+          modalCRRegion.classList.add("col-sm-12");
+          modalCRRegion.classList.add("nameC");
           const mCRNLblR=document.createElement("label");
           mCRNLblR.textContent="Region:";
           modalCRRegion.append(mCRNLblR);
           const mCRNLspnR=document.createElement("span");
-          mCRNLspnR.textContent="Europe";
+          mCRNLspnR.textContent=`${res.region}`;
           modalCRRegion.append(mCRNLspnR);
         
           rowContentRowmodalEl.append(modalCRRegion);
@@ -472,10 +482,10 @@ const mainContent=document.createElement("div");
         let modal = document.getElementById("myModal");
         let x =document.getElementById("myalert");
         // Get the button that opens the modal
-        var btn = document.querySelector("#myModal");
+        const btn = document.querySelector("#myModal");
         
         // Get the <span> element that closes the modal
-        var spanClose = document.getElementById("close");
+        const spanClose = document.getElementById("close");
         
         // When the user clicks the pic, open the modal 
          // btn.addEventListener("click", function() {
@@ -484,15 +494,21 @@ const mainContent=document.createElement("div");
        //  );
         
         // When the user clicks on <span> (x), close the modal
-        spanClose.addEventListener("click",function() {
+        spanClose.addEventListener("mouseup",function() {
           modalEl.style.display = "none";
         });
         
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
           if (event.target == modal) {
-            modal.style.display = "none";
+            modalEl.style.display = "none";
           }
         }
         //////////////////////////////////////////////       
       }
+      document.body.addEventListener("click", function() {
+        let modals = document.querySelector(".modal");
+        
+          modalEl.style.display = "none";
+        }
+      );
