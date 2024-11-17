@@ -164,6 +164,11 @@ downHeader.append(cols5);
     option6.id="Oceania";
     selectbox.append(option6);
 
+    const option7=document.createElement("option");
+    option7.value="all";
+    option7.innerHTML="All contery";
+    option7.id="all";
+    selectbox.append(option7);
   cols5.append(dropDownEl);
 
    function closeSearch(){
@@ -196,9 +201,9 @@ const mainContent=document.createElement("div");
     containerEl.append(mainContent);
 
   ///create a box for selected option 
-    function boxMaking(namee,capital,region,population,png){
-
-     
+    function boxMaking(res,index){
+	
+     //console.log("RES==>",res);
 
 
       const boxContent=document.createElement("div");
@@ -215,33 +220,40 @@ const mainContent=document.createElement("div");
         
       const imgBox=document.createElement("img");
       imgBox.classList.add("images");
-      imgBox.src=`${png}`;
+      imgBox.src=`${res.flags.png}`;
       imgBox.alt="jj";
+      imgBox.addEventListener("click",()=>openModal(res,index));
       aBox.append(imgBox);
       boxContent.append(boxContent2);
+     //imgBox.onclick=(openModal(res));
+	
       const H2El=document.createElement("h2");
       H2El.classList.add("counter-title");
-      H2El.innerHTML=`${namee}`;
+      H2El.innerHTML=`${res.name}`;
       boxContent2.append(H2El);
 
 
       const spanPop=document.createElement("span");
       spanPop.classList.add("pop");
-      spanPop.innerHTML=`population:  ${population}`;
+      spanPop.innerHTML=`population:  ${res.population}`;
       boxContent2.append(spanPop);
 
 
       const spanRegion=document.createElement("span");
       spanRegion.classList.add("region");
-      spanRegion.innerHTML=`region:  ${region}`;
+      spanRegion.innerHTML=`region:  ${res.region}`;
       boxContent2.append(spanRegion);
 
       const spancapital=document.createElement("span");
       spancapital.classList.add("capital");
-      spancapital.innerHTML=`capital: ${capital}`;
+      spancapital.innerHTML=`capital: ${res.capital}`;
       boxContent2.append(spancapital);      
     }
     ///////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
     showcountery = function(e){
       document.querySelector(".main-content").innerHTML="";
        //reuest on xmlHttp
@@ -253,17 +265,30 @@ const mainContent=document.createElement("div");
          request.addEventListener("load", function (){
             if (request.readyState == 4 && request.status == 200) {
               let result= JSON.parse(request.responseText);
-              console.log(e.target.value);
+             // console.log(e.target.value);
                   
-                  result.map((res)=>{
+                  result.map((res,index)=>{
+					 //console.log("RES==>",res);
                     if(res.region ===e.target.value)
-                    boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+					
+					
+					   boxMaking(res,index);
+					
+                    
+
+                    //else if(res.region ==e.target.value && e.target.value)
+                      //boxMaking(res);
                   })
                 }
             })
           }  
 
 ////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
      let selectDropDown=document.querySelector("#region");
     selectDropDown.addEventListener("change",showcountery);
    
@@ -282,10 +307,10 @@ const mainContent=document.createElement("div");
               let result= JSON.parse(request.responseText);
               const toUpperSearch = e.target.value.toUpperCase();
                  
-                  result.map((res)=>{
+                  result.map((res,index)=>{
                     let response12=res.name.toUpperCase();
                     if( response12.includes(toUpperSearch)){
-                     boxMaking(res.name,res.capital,res.region,res.population,res.flags.png);
+                     boxMaking(res,index);
                      }
                   })
                 }
@@ -295,3 +320,179 @@ const mainContent=document.createElement("div");
     let searchText=document.querySelector("#mySearch");
     searchText.addEventListener("input",searchCountery);
    
+
+
+    
+
+    //////////////////////////////////////modal create
+   
+  
+//function openModal();
+
+
+
+  //reuest on xmlHttp
+ 
+        
+  function openModal(res,index){
+	  event.preventDefault()
+
+	  console.log("index==>",index);
+  // console.log("RES ==>",res);
+          let modals = document.getElementById("myModal");
+          //modals.style.display = "block";
+          const modalEl=document.createElement("div");
+          modalEl.classList.add("modal");
+          modalEl.id="myModal";
+          const modalContent=document.createElement("div");
+          modalContent.classList.add("modal-content");
+          const rowmodalEl=document.createElement("div");
+          rowmodalEl.classList.add("row");
+          rowmodalEl.id="row-div";
+          modalEl.append(rowmodalEl);
+          const modalC0l12=document.createElement("div");
+          modalC0l12.classList.add("col-lg-12");
+          modalC0l12.classList.add("col-md-12");
+          modalC0l12.classList.add("col-sm-12");
+          rowmodalEl.append(modalC0l12);
+          const modalContentmain=document.createElement("div");
+          modalContentmain.classList.add("col-lg-12");
+          modalContentmain.classList.add("col-md-12");
+          modalContentmain.classList.add("col-sm-12");
+          rowmodalEl.append(modalContentmain);
+          const spanContent=document.createElement("span");
+          spanContent.classList.add("close");
+          spanContent.id="close";
+          spanContent.innerHTML="&times;";
+        
+        
+        
+          const ContentRowmodalEl=document.createElement("div");
+          ContentRowmodalEl.classList.add("row");
+          ContentRowmodalEl.id="row-div-content-modal";
+          modalContent.append( ContentRowmodalEl);
+        
+        
+        
+        
+          const modalContentleft=document.createElement("div");
+          modalContentleft.classList.add("col-lg-6");
+          modalContentleft.classList.add("col-md-6");
+          modalContentleft.classList.add("col-sm-6");
+          modalContentleft.id="modal_pic";
+          ContentRowmodalEl.append(modalContentleft);
+        
+        
+          const modalContentRight=document.createElement("div");
+          modalContentRight.classList.add("col-lg-6");
+          modalContentRight.classList.add("col-md-6");
+          modalContentRight.classList.add("col-sm-6");
+          ContentRowmodalEl.append(modalContentRight);
+        
+        
+          const rowContentRowmodalEl=document.createElement("div");
+          rowContentRowmodalEl.classList.add("row");
+          modalContentRight.append(rowContentRowmodalEl);
+        
+          const modalContentRightName=document.createElement("div");
+          modalContentRightName.classList.add("col-lg-6");
+          modalContentRightName.classList.add("col-md-6");
+          modalContentRightName.classList.add("col-sm-6");
+          modalContentRightName.textContent="Iran";
+          rowContentRowmodalEl.append(modalContentRightName);
+        
+          //native name in modal 
+          const modalContentRightNativeName=document.createElement("div");
+          modalContentRightNativeName.classList.add("col-lg-6");
+          modalContentRightNativeName.classList.add("col-md-6");
+          modalContentRightNativeName.classList.add("col-sm-6");
+        
+          const mCRNLbl1=document.createElement("label");
+          mCRNLbl1.textContent="Native Name :";
+          modalContentRightNativeName.append(mCRNLbl1);
+          const mCRNLspn1=document.createElement("span");
+          mCRNLspn1.textContent="Irani ";
+          modalContentRightNativeName.append(mCRNLspn1);
+        
+          rowContentRowmodalEl.append(modalContentRightNativeName);
+        
+        
+        //population in modal
+          const modalCRPopulation=document.createElement("div");
+          modalCRPopulation.classList.add("col-lg-6");
+          modalCRPopulation.classList.add("col-md-6");
+          modalCRPopulation.classList.add("col-sm-6");
+        
+          const mCRNLblP=document.createElement("label");
+          mCRNLblP.textContent="Population :";
+          modalCRPopulation.append(mCRNLblP);
+          const mCRNLspnP=document.createElement("span");
+          mCRNLspnP.textContent="456464564646";
+          modalCRPopulation.append(mCRNLspnP);
+        
+          rowContentRowmodalEl.append(modalCRPopulation);
+        
+        
+        
+          //Region in modal
+          const modalCRRegion=document.createElement("div");
+          modalCRRegion.classList.add("col-lg-6");
+          modalCRRegion.classList.add("col-md-6");
+          modalCRRegion.classList.add("col-sm-6");
+        
+          const mCRNLblR=document.createElement("label");
+          mCRNLblR.textContent="Region:";
+          modalCRRegion.append(mCRNLblR);
+          const mCRNLspnR=document.createElement("span");
+          mCRNLspnR.textContent="Europe";
+          modalCRRegion.append(mCRNLspnR);
+        
+          rowContentRowmodalEl.append(modalCRRegion);
+        
+        
+        
+        
+          const modalContentPic=document.createElement("img");
+          modalContentPic.src=res.flags.png;
+          modalContentPic.alt="ghvh";
+          modalContentleft.append(modalContentPic);
+        
+        
+        
+        
+        
+          
+            modalEl.append(rowmodalEl);
+            modalContentmain.append(modalContent);
+            modalC0l12.append(spanContent);
+           
+        document.body.append(modalEl);
+
+        modalEl.style.display = "block";
+        let modal = document.getElementById("myModal");
+        let x =document.getElementById("myalert");
+        // Get the button that opens the modal
+        var btn = document.querySelector("#myModal");
+        
+        // Get the <span> element that closes the modal
+        var spanClose = document.getElementById("close");
+        
+        // When the user clicks the pic, open the modal 
+         // btn.addEventListener("click", function() {
+            
+        //   }
+       //  );
+        
+        // When the user clicks on <span> (x), close the modal
+        spanClose.addEventListener("click",function() {
+          modalEl.style.display = "none";
+        });
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        //////////////////////////////////////////////       
+      }
