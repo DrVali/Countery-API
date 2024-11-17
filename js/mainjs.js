@@ -507,6 +507,7 @@ const mainContent=document.createElement("div");
               modalDisplay.classList.toggle("noneModal");
           }
         }
+  }
         //////////////////////////////////////////////   
         
       
