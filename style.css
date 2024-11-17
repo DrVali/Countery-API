@@ -75,9 +75,9 @@ color: burlywood;
   width: 55px;
   height: 50px;
   background-color: var(--colorText);
-
   transition: 0.5s;
- overflow: hidden;
+  overflow: hidden;
+  border-radius: 50px;
 }
 .search .icon{
   position: absolute;
@@ -86,12 +86,13 @@ color: burlywood;
   width: 55px;
   height: 55px;
   background-color: var(--colorText);
-  border-radius:60px ;
+  border-radius: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   cursor: pointer;
+ 
 }
 .search .icon::before{
   content: " ";
@@ -115,24 +116,23 @@ color: burlywood;
 width: 100%;
 }
 
-.search .input{ 
+.search .input{
   position: relative;
-   width: 93%;
-   height: 55px;
-   left: 55px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
- 
+  width: 100%;
+  height: 55px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .search .input input{
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
   outline: none;
   font-size: 18px;
-padding: 15px 10px;
+  padding: 15px 55px;
 }
 
 .clear{
@@ -216,12 +216,12 @@ padding: 15px 10px;
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 10000; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  z-index: 100; /* Sit on top */
+  padding-top: 10px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  height: 100vh; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -242,6 +242,7 @@ padding: 15px 10px;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  height: 50px;
 }
 
 .close:hover,
@@ -249,4 +250,18 @@ padding: 15px 10px;
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+.modal-content span {
+  height: 50px;
+  width: auto;
+  text-align: left;font-size: 1.5rem;
+}
+.modal-content label{
+  font-size: 1.5rem;
+  height:1.5rem;
+    width: auto; 
+    text-align: left;
+}
+.nameC{
+  font-size: 1.75rem;  height:3rem;
 }
