@@ -278,9 +278,7 @@ const mainContent=document.createElement("div");
 					
                     
 
-                    if( e.target.value==="all"){
-                      console.log(e.target.value);
-                      
+                    if( e.target.value==="all"){                      
                       boxMaking(res);
 
                     }
@@ -314,6 +312,7 @@ const mainContent=document.createElement("div");
               const toUpperSearch = e.target.value.toUpperCase();
                  
                   result.map((res,index)=>{
+                                   
                     let response12=res.name.toUpperCase();
                     if( response12.includes(toUpperSearch)){
                      boxMaking(res,index);
@@ -420,7 +419,7 @@ const mainContent=document.createElement("div");
           mCRNLbl1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLbl1);
           const mCRNLspn1=document.createElement("span");
-          mCRNLspn1.textContent="Irani ";
+          mCRNLspn1.textContent=`${res.nativeName}`;
           mCRNLspn1.classList.add("nameC");
           modalContentRightNativeName.append(mCRNLspn1);
         
@@ -509,6 +508,6 @@ const mainContent=document.createElement("div");
       document.body.addEventListener("click", function() {
         let modals = document.querySelector(".modal");
         
-          modals.style.display = "none";
+        modals.style.display = "none";
         }
       );
