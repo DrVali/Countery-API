@@ -47,6 +47,7 @@ document.body.addEventListener("load",function(){
            //change moon or sun
     if(document.body.classList.contains("dark")){
         document.getElementById("darkI").classList.add("fa-sun-o");
+      
     }
     else
     document.getElementById("darkI").classList.add("fa-moon-o");
@@ -56,6 +57,8 @@ document.body.addEventListener("load",function(){
         document.getElementById("darkI").classList.toggle("fa-sun-o");
         document.getElementById("darkI").classList.toggle("fa-moon-o");
         document.body.classList.toggle("dark");
+        document.querySelector(".header").classList.toggle("dark");
+        document.getElementById("mySearch").classList.toggle("dark")
         
          } 
 
@@ -128,11 +131,11 @@ downHeader.append(cols5);
     dropDownEl.append(selectbox);
 
     const option1=document.createElement("option");
-    option1.value="select a Region";
-    option1.innerHTML="";
-    option1.id="select a Region";
-    option1.style.display="none";
+    option1.value="all";
+    option1.innerHTML="All contery";
+    option1.id="all";
     selectbox.append(option1);
+    
 
     const option2=document.createElement("option");
     option2.value="Africa";
@@ -169,11 +172,7 @@ downHeader.append(cols5);
     option6.id="Oceania";
     selectbox.append(option6);
 
-    const option7=document.createElement("option");
-    option7.value="all";
-    option7.innerHTML="All contery";
-    option7.id="all";
-    selectbox.append(option7);
+   
   cols5.append(dropDownEl);
 
    function closeSearch(){
@@ -298,7 +297,30 @@ const mainContent=document.createElement("div");
 
      let selectDropDown=document.querySelector("#region");
     selectDropDown.addEventListener("change",showcountery);
-   
+   //////////////////////////////////////
+   window.addEventListener("load",function () {
+    document.querySelector(".main-content").innerHTML="";
+    //reuest on xmlHttp
+         let request;
+         if(window.XMLHttpRequest) { request= new XMLHttpRequest(); }
+         else { request = new ActiveXObject("Microsoft.XMLHTTP"); }
+         request.open('GET', 'data.json') ;
+         request.send();           
+      request.addEventListener("load", function (){
+         if (request.readyState == 4 && request.status == 200) {
+           let result= JSON.parse(request.responseText);
+          // console.log(e.target.value);
+               
+               result.map((res,index)=>{
+        //console.log("RES==>",res);            
+                   boxMaking(res);
+
+                 }
+               )
+             }
+         })
+    
+   });
 
 
     searchCountery = function(e){
@@ -507,9 +529,9 @@ const mainContent=document.createElement("div");
               modalDisplay.classList.toggle("noneModal");
           }
         }
-  }
         //////////////////////////////////////////////   
         
       
   
+      }
       
