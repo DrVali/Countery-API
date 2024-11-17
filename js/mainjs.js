@@ -509,6 +509,6 @@ const mainContent=document.createElement("div");
       document.body.addEventListener("click", function() {
         let modals = document.querySelector(".modal");
         
-          modalEl.style.display = "none";
+          modals.style.display = "none";
         }
       );
