@@ -31,10 +31,19 @@ li{
 a{
   text-decoration: none;
 }
-
+img{
+  border: 2px solid #5991c9;
+  padding: 5px;
+  object-fit: fill;
+  width:100%;
+  aspect-ratio: 4/3;
+}
 .container-fluid{
 width: 100%;
 height: 100vh;
+}
+.spanId{
+  color: var(--colorText);
 }
 .header{
   z-index: 1000;
@@ -60,6 +69,14 @@ color: burlywood;
 .dark{
   background-color:var(--colorText);
   color: var(--bodyColor);
+}
+.testdark{
+  background-color:red;
+  color: white;
+}
+.darkBox{
+  background-color: var(--headerColor);
+  color: var(--test-color);
 }
 #darkI{
   float: right;
@@ -116,7 +133,7 @@ color: burlywood;
   border-radius: 50%;
 }
 .search.active{
-width: 100%;
+width: 100%;background-color: var(--headerColor);
 }
 
 .search .input{
@@ -126,7 +143,7 @@ width: 100%;
   left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;background-color: var(--headerColor);
 }
 .search .input input{
   position: absolute;
@@ -136,11 +153,12 @@ width: 100%;
   outline: none;
   font-size: 18px;
   padding: 15px 55px;
+  background-color: var(--headerColor);
 }
 
 .clear{
   position: absolute;
-  top:38%;
+  top:30%;
   transform: translate(-50%);
   width: 20px;
   height: 20px;
@@ -148,7 +166,7 @@ width: 100%;
    cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;background-color: var(--headerColor);
 }
 .clear::before{
   position: absolute;
@@ -193,24 +211,36 @@ width: 100%;
 .main-content .box{
   max-width: 24%;
   height: auto;
-  background: var(--headerColor);
   margin-bottom: 15px;
   flex-grow: 1;
   flex-basis: 200px;
   margin: 5px;
+  padding: 3px;
+ 
+min-height: 400px;
 }
+.main-content .box-content{
+  background-color: var(--headerColor);
+} 
 
 .main-content .box a img{
   width:100%;
   aspect-ratio: 4/3;
   height:auto;
   object-fit: fill;
+  cursor: pointer;
+  
 }
 .main-content .box span,.main-content .box h2{
   display: block;
   padding: 5px;
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: var(--colorText);
+  cursor: pointer;
+}
+
+.main-content .box h2:hover{
+  color: #287dfc;
 }
 
 .box-content{
@@ -266,4 +296,13 @@ padding: 5px;
 }
 .nameC{
   font-weight: bolder;
+}
+
+@media screen and (max-width:480px) {
+  .main-content .box{
+    min-width: 1000%;
+    flex-grow: 2;
+    flex-basis: 400px; 
+  }
+
 }
