@@ -5,8 +5,9 @@ const mainHeader = document.createElement("div");
 mainHeader.classList.add("header");
 containerEl.append(mainHeader);
 let darkLight = true;
-let helpsearch ="all";
+let helpsearch = "all";
 let boxColor;
+let saveState; // for reeber slected region
 //create div class="row"
 const rowdivRow = document.createElement("div");
 rowdivRow.classList.add("row");
@@ -58,34 +59,42 @@ function darkmode() {
   document.querySelector(".header").classList.toggle("dark");
   document.getElementById("mySearch").classList.toggle("dark");
   document.querySelector(".rHeader").classList.toggle("dark");
-  
-  
-  const spans = document.querySelectorAll('span');
-  spans.forEach(span => { span.style.color = 'rgb(250, 250, 250)';});
-  
-  const h2Color = document.querySelectorAll('h2');
-  h2Color.forEach(span => { span.style.color = 'rgb(250, 250, 250)';});
-  
-  
-  
+
+  const spans = document.querySelectorAll("span");
+  spans.forEach((span) => {
+    span.style.color = "rgb(250, 250, 250)";
+  });
+
+  const h2Color = document.querySelectorAll("h2");
+  h2Color.forEach((span) => {
+    span.style.color = "rgb(250, 250, 250)";
+  });
+
   if (darkLight) {
     document.querySelector(".rHeader").innerHTML = "Dark";
     darkLight = false;
     document.querySelector(".icon").classList.toggle("darkBox");
-spans.forEach(span => { span.style.color = 'rgb(250, 250, 250)';});
-h2Color.forEach(span => { span.style.color = 'rgb(250, 250, 250);';});
-
+    spans.forEach((span) => {
+      span.style.color = "rgb(250, 250, 250)";
+    });
+    h2Color.forEach((span) => {
+      span.style.color = "rgb(250, 250, 250);";
+    });
   } else {
     document.querySelector(".rHeader").innerHTML = "Light";
     darkLight = true;
     document.querySelector(".icon").classList.toggle("darkBox");
-	spans.forEach(span => { span.style.color = 'rgb(250, 250, 250);';});
-  h2Color.forEach(spanf => { spanf.style.color = 'rgb(250, 250, 250);';});
-  // boxColor.forEach(function(span) { span.style.background = 'var(--headerColor)';
-  //   span.style.border='1px solid blue';
-  //   span.style.color="blue";
-  // });
-  } 
+    spans.forEach((span) => {
+      span.style.color = "rgb(250, 250, 250);";
+    });
+    h2Color.forEach((spanf) => {
+      spanf.style.color = "rgb(250, 250, 250);";
+    });
+    // boxColor.forEach(function(span) { span.style.background = 'var(--headerColor)';
+    //   span.style.border='1px solid blue';
+    //   span.style.color="blue";
+    // });
+  }
 }
 
 btnDarkmode.addEventListener("click", darkmode);
@@ -137,6 +146,12 @@ inputEl.append(spanEl);
 searchEl.append(iconEl);
 searchEl.append(inputEl);
 col7.append(searchEl);
+
+backTomain = function () {
+  console.log(saveState);
+  document.querySelector(".main-content").append(saveState);
+};
+spanEl.addEventListener("click", backTomain);
 
 //create drop down
 const dropDownEl = document.createElement("div");
@@ -253,7 +268,9 @@ function boxMaking(res, index) {
 }
 ///////////////////////////////////////////////////////////////////////
 
-showcountery = function (e) {
+showcountery = function (region) {
+  console.log("region===", region);
+
   document.querySelector(".main-content").innerHTML = "";
   //reuest on xmlHttp
   let request;
@@ -268,12 +285,12 @@ showcountery = function (e) {
     if (request.readyState === 4 && request.status === 200) {
       let result = JSON.parse(request.responseText);
       // console.log(e.target.value);
-      helpsearch=e.target.value;
+      helpsearch = region;
       result.map((res, index) => {
         //console.log("RES==>",res);
-        if (res.region === e.target.value) boxMaking(res, index);
+        if (res.region === region) boxMaking(res, index);
 
-        if (e.target.value === "all") {
+        if (region === "all") {
           boxMaking(res);
         }
       });
@@ -284,10 +301,12 @@ showcountery = function (e) {
 ////////////////////////////////////////////////////////////////////////////////////
 
 let selectDropDown = document.querySelector("#region");
-selectDropDown.addEventListener("change", showcountery);
+selectDropDown.addEventListener("change", (e) => {
+  let RegionEl = e.target.value;
+  showcountery(RegionEl);
+});
 
 //////////////////////////////////////
-
 
 window.addEventListener("load", function () {
   document.querySelector(".main-content").innerHTML = "";
@@ -316,10 +335,8 @@ window.addEventListener("load", function () {
 // create search function/////////////////////////////////////////////////
 
 searchCountery = function (e) {
-  //console.log("region=====> ",searchHelp);  for find selected region
- // console.log("region: =======> ",e.target.value);
   document.querySelector(".main-content").innerHTML = "";
-  let testIsInregion=false;
+  let testIsInregion = false;
   //reuest on xmlHttp
   let request;
   if (window.XMLHttpRequest) {
@@ -335,24 +352,16 @@ searchCountery = function (e) {
       const toUpperSearch = e.target.value.toUpperCase();
 
       result.map((res, index) => {
-         let k=res;
+        let k = res;
         let response12 = res.name.toUpperCase();
-        
-      
-        //&& k.region=== helpsearch
-        if (response12.includes(toUpperSearch)  ) {
-           if(k.region === helpsearch || helpsearch==="all") {
-          testIsInregion = true;
-           }
+        if (response12.includes(toUpperSearch)) {
+          if (k.region === helpsearch || helpsearch === "all") {
+            boxMaking(res, index);
+            console.log("ok");
+          }
         }
-         if (testIsInregion && response12.includes(toUpperSearch))
-          {
-             boxMaking(res, index);
-         }
+        
       });
-       
-    //    else
-    //    console.log("not find");
     }
   });
 };
@@ -361,10 +370,6 @@ let searchText = document.querySelector("#mySearch");
 searchText.addEventListener("input", searchCountery);
 
 //////////////////////////////////////modal create
-
-//function openModal();
-
-//reuest on xmlHttp
 
 function openModal(res, index) {
   event.preventDefault();
@@ -494,12 +499,6 @@ function openModal(res, index) {
 
   // Get the <span> element that closes the modal
   const spanClose = document.getElementById("close");
-
-  // When the user clicks the pic, open the modal
-  // btn.addEventListener("click", function() {
-
-  //   }
-  //  );
 
   // When the user clicks on <span> (x), close the modal
   spanClose.addEventListener("mouseup", function () {
