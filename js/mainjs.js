@@ -338,7 +338,7 @@ searchCountery = function (e) {
          let k=res;
         let response12 = res.name.toUpperCase();
         
-        console.log("helpsearch===---",helpsearch);
+      
         //&& k.region=== helpsearch
         if (response12.includes(toUpperSearch)  ) {
            if(k.region === helpsearch || helpsearch==="all") {
