@@ -5,6 +5,8 @@ const mainHeader = document.createElement("div");
 mainHeader.classList.add("header");
 containerEl.append(mainHeader);
 let darkLight = true;
+let helpsearch ="all";
+let boxColor;
 //create div class="row"
 const rowdivRow = document.createElement("div");
 rowdivRow.classList.add("row");
@@ -58,10 +60,10 @@ function darkmode() {
   document.querySelector(".rHeader").classList.toggle("dark");
   
   
-  var spans = document.querySelectorAll('span');
+  const spans = document.querySelectorAll('span');
   spans.forEach(span => { span.style.color = 'rgb(250, 250, 250)';});
   
-  var h2Color = document.querySelectorAll('h2');
+  const h2Color = document.querySelectorAll('h2');
   h2Color.forEach(span => { span.style.color = 'rgb(250, 250, 250)';});
   
   
@@ -79,10 +81,10 @@ h2Color.forEach(span => { span.style.color = 'rgb(250, 250, 250);';});
     document.querySelector(".icon").classList.toggle("darkBox");
 	spans.forEach(span => { span.style.color = 'rgb(250, 250, 250);';});
   h2Color.forEach(spanf => { spanf.style.color = 'rgb(250, 250, 250);';});
-  boxColor.forEach(span => { span.style.background = 'var(--headerColor)';
-    span.style.border='1px solid blue';
-    span.style.color="blue";
-  });
+  // boxColor.forEach(function(span) { span.style.background = 'var(--headerColor)';
+  //   span.style.border='1px solid blue';
+  //   span.style.color="blue";
+  // });
   } 
 }
 
@@ -263,10 +265,10 @@ showcountery = function (e) {
   request.open("GET", "data.json");
   request.send();
   request.addEventListener("load", function () {
-    if (request.readyState == 4 && request.status == 200) {
+    if (request.readyState === 4 && request.status === 200) {
       let result = JSON.parse(request.responseText);
       // console.log(e.target.value);
-
+      helpsearch=e.target.value;
       result.map((res, index) => {
         //console.log("RES==>",res);
         if (res.region === e.target.value) boxMaking(res, index);
@@ -283,7 +285,10 @@ showcountery = function (e) {
 
 let selectDropDown = document.querySelector("#region");
 selectDropDown.addEventListener("change", showcountery);
+
 //////////////////////////////////////
+
+
 window.addEventListener("load", function () {
   document.querySelector(".main-content").innerHTML = "";
   //reuest on xmlHttp
@@ -296,7 +301,7 @@ window.addEventListener("load", function () {
   request.open("GET", "data.json");
   request.send();
   request.addEventListener("load", function () {
-    if (request.readyState == 4 && request.status == 200) {
+    if (request.readyState === 4 && request.status === 200) {
       let result = JSON.parse(request.responseText);
       // console.log(e.target.value);
 
@@ -308,8 +313,13 @@ window.addEventListener("load", function () {
   });
 });
 
+// create search function/////////////////////////////////////////////////
+
 searchCountery = function (e) {
+  //console.log("region=====> ",searchHelp);  for find selected region
+ // console.log("region: =======> ",e.target.value);
   document.querySelector(".main-content").innerHTML = "";
+  let testIsInregion=false;
   //reuest on xmlHttp
   let request;
   if (window.XMLHttpRequest) {
@@ -320,16 +330,29 @@ searchCountery = function (e) {
   request.open("GET", "data.json");
   request.send();
   request.addEventListener("load", function () {
-    if (request.readyState == 4 && request.status == 200) {
+    if (request.readyState === 4 && request.status === 200) {
       let result = JSON.parse(request.responseText);
       const toUpperSearch = e.target.value.toUpperCase();
 
       result.map((res, index) => {
+         let k=res;
         let response12 = res.name.toUpperCase();
-        if (response12.includes(toUpperSearch)) {
-          boxMaking(res, index);
+        
+        console.log("helpsearch===---",helpsearch);
+        //&& k.region=== helpsearch
+        if (response12.includes(toUpperSearch)  ) {
+           if(k.region === helpsearch || helpsearch==="all") {
+          testIsInregion = true;
+           }
         }
+         if (testIsInregion && response12.includes(toUpperSearch))
+          {
+             boxMaking(res, index);
+         }
       });
+       
+    //    else
+    //    console.log("not find");
     }
   });
 };
