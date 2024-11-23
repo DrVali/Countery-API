@@ -5,15 +5,15 @@ const mainHeader = document.createElement("div");
 mainHeader.classList.add("header");
 containerEl.append(mainHeader);
 let darkLight = true;
-let helpsearch = "all";
+let helpSearch = "all";
 let boxColor;
 let saveState; // for reeber slected region
 //create div class="row"
-const rowdivRow = document.createElement("div");
-rowdivRow.classList.add("row");
+const rowDivRow = document.createElement("div");
+rowDivRow.classList.add("row");
 
 document.body.append(containerEl);
-mainHeader.append(rowdivRow);
+mainHeader.append(rowDivRow);
 
 //create div class="col-8"
 
@@ -28,16 +28,16 @@ col4.classList.add("col-lg-4");
 col4.classList.add("col-md-4");
 col4.classList.add("col-sm-4");
 col4.classList.add("header-r");
-const btnDarkmode = document.createElement("a");
+const btnDarkMode = document.createElement("a");
 
-btnDarkmode.classList.add("rHeader");
-col4.append(btnDarkmode);
+btnDarkMode.classList.add("rHeader");
+col4.append(btnDarkMode);
 const iconDark = document.createElement("i");
 iconDark.id = "darkI";
 iconDark.classList.add("fa");
 col4.append(iconDark);
-rowdivRow.append(cols8);
-rowdivRow.append(col4);
+rowDivRow.append(cols8);
+rowDivRow.append(col4);
 const modalDisplay = document.getElementById("myModal");
 
 document.body.addEventListener("load", function () {
@@ -97,7 +97,7 @@ function darkmode() {
   }
 }
 
-btnDarkmode.addEventListener("click", darkmode);
+btnDarkMode.addEventListener("click", darkmode);
 
 //create header left
 const textHeader = document.createElement("p");
@@ -157,48 +157,48 @@ spanEl.addEventListener("click", backTomain);
 const dropDownEl = document.createElement("div");
 dropDownEl.classList.add("dropdown");
 
-const selectbox = document.createElement("select");
-selectbox.name = "region";
-selectbox.id = "region";
-selectbox.classList.add("regionClss");
+const selectBox = document.createElement("select");
+selectBox.name = "region";
+selectBox.id = "region";
+selectBox.classList.add("regionClss");
 
-dropDownEl.append(selectbox);
+dropDownEl.append(selectBox);
 
 const option1 = document.createElement("option");
 option1.value = "all";
 option1.innerHTML = "All contery";
 option1.id = "all";
-selectbox.append(option1);
+selectBox.append(option1);
 
 const option2 = document.createElement("option");
 option2.value = "Africa";
 option2.innerHTML = "Africa";
 option2.id = "Africa";
-selectbox.append(option2);
+selectBox.append(option2);
 
 const option3 = document.createElement("option");
 option3.value = "Americas";
 option3.innerHTML = "Americas";
 option3.id = "Americas";
-selectbox.append(option3);
+selectBox.append(option3);
 
 const option4 = document.createElement("option");
 option4.value = "Asia";
 option4.innerHTML = "Asia";
 option4.id = "Asia";
-selectbox.append(option4);
+selectBox.append(option4);
 
 const option5 = document.createElement("option");
 option5.value = "Europe";
 option5.innerHTML = "Europe";
 option5.id = "Europe";
-selectbox.append(option5);
+selectBox.append(option5);
 
 const option6 = document.createElement("option");
 option6.value = "Oceania";
 option6.innerHTML = "Oceania";
 option6.id = "Oceania";
-selectbox.append(option6);
+selectBox.append(option6);
 
 cols5.append(dropDownEl);
 
@@ -285,7 +285,7 @@ showcountery = function (region) {
     if (request.readyState === 4 && request.status === 200) {
       let result = JSON.parse(request.responseText);
       // console.log(e.target.value);
-      helpsearch = region;
+      helpSearch = region;
       result.map((res, index) => {
         //console.log("RES==>",res);
         if (res.region === region) boxMaking(res, index);
@@ -355,12 +355,10 @@ searchCountery = function (e) {
         let k = res;
         let response12 = res.name.toUpperCase();
         if (response12.includes(toUpperSearch)) {
-          if (k.region === helpsearch || helpsearch === "all") {
+          if (k.region === helpSearch || helpSearch === "all") {
             boxMaking(res, index);
-            console.log("ok");
           }
         }
-        
       });
     }
   });
@@ -448,7 +446,7 @@ function openModal(res, index) {
 
   rowContentRowmodalEl.append(modalContentRightNativeName);
 
-  //population in modal
+  //population in modal      =modal  c=content   R=right
   const modalCRPopulation = document.createElement("div");
   modalCRPopulation.classList.add("col-lg-12");
   modalCRPopulation.classList.add("col-md-12");
